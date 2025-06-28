@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Treasure Hunt Game</title>
+    <link rel="stylesheet" href="file:///assets/styles.css">
+    <link rel="stylesheet" href="file:///assets/animations.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Treasure Hunt</span>
+            </div>
+            <div class="nav-menu">
+                <a href="home.html" class="nav-link active">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="play.html" class="nav-link">
+                    <i class="fas fa-gamepad"></i> Play
+                </a>
+                <a href="leaderboard.html" class="nav-link">
+                    <i class="fas fa-trophy"></i> Leaderboard
+                </a>
+                <a href="profile.html" class="nav-link">
+                    <i class="fas fa-user"></i> Profile
+                </a>
+                <a href="admin.html" class="nav-link admin-only" style="display: none;">
+                    <i class="fas fa-cog"></i> Admin
+                </a>
+                <a href="#" onclick="logout()" class="nav-link logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Home Page Content -->
+    <div class="page-container">
+        <div class="home-container">
+            <div class="welcome-section">
+                <div class="user-profile">
+                    <div class="avatar-container">
+                        <img id="user-avatar" src="" alt="Profile">
+                        <div class="status-indicator online"></div>
+                    </div>
+                    <div class="user-info">
+                        <h2 id="user-name">Welcome, Hunter!</h2>
+                        <div class="balance">
+                            <i class="fas fa-coins"></i>
+                            <span id="user-balance">0</span> Coins
+                        </div>
+                        <div class="user-level">
+                            <i class="fas fa-star"></i>
+                            Level <span id="user-level">1</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-stats">
+                <div class="stat-card">
+                    <i class="fas fa-gamepad"></i>
+                    <h3>Games Played</h3>
+                    <span id="games-played">0</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-trophy"></i>
+                    <h3>Games Won</h3>
+                    <span id="games-won">0</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-percentage"></i>
+                    <h3>Win Rate</h3>
+                    <span id="win-rate">0%</span>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-coins"></i>
+                    <h3>Total Winnings</h3>
+                    <span id="total-winnings">0</span>
+                </div>
+            </div>
+
+            <div class="achievements-section">
+                <h3><i class="fas fa-medal"></i> Recent Achievements</h3>
+                <div class="achievements-list" id="achievements-list">
+                    <!-- Achievements will be populated here -->
+                </div>
+            </div>
+
+            <div class="quick-actions">
+                <a href="play.html" class="action-btn primary">
+                    <i class="fas fa-play"></i>
+                    <span>Start Game</span>
+                </a>
+                <a href="leaderboard.html" class="action-btn secondary">
+                    <i class="fas fa-trophy"></i>
+                    <span>Leaderboard</span>
+                </a>
+                <button class="action-btn tertiary" onclick="showDailyBonus()">
+                    <i class="fas fa-gift"></i>
+                    <span>Daily Bonus</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="file:///assets/storage.js"></script>
+    <script src="file:///assets/sounds.js"></script>
+    <script src="file:///assets/utils.js"></script>
+    <script src="file:///assets/auth.js"></script>
+    <script src="file:///assets/home.js"></script>
+</body>
+</html>

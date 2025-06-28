@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play - Treasure Hunt Game</title>
+    <link rel="stylesheet" href="file:///assets/styles.css">
+    <link rel="stylesheet" href="file:///assets/animations.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Treasure Hunt</span>
+            </div>
+            <div class="nav-menu">
+                <a href="home.html" class="nav-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="play.html" class="nav-link active">
+                    <i class="fas fa-gamepad"></i> Play
+                </a>
+                <a href="leaderboard.html" class="nav-link">
+                    <i class="fas fa-trophy"></i> Leaderboard
+                </a>
+                <a href="profile.html" class="nav-link">
+                    <i class="fas fa-user"></i> Profile
+                </a>
+                <a href="admin.html" class="nav-link admin-only" style="display: none;">
+                    <i class="fas fa-cog"></i> Admin
+                </a>
+                <a href="#" onclick="logout()" class="nav-link logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Game Page Content -->
+    <div class="page-container">
+        <div class="game-container">
+            <div class="game-header">
+                <h2><i class="fas fa-map-marked-alt"></i> Treasure Hunt</h2>
+                <div class="game-balance">
+                    <i class="fas fa-coins"></i>
+                    <span id="game-balance">0</span> Coins
+                </div>
+            </div>
+
+            <!-- Game Configuration -->
+            <div class="game-config">
+                <div class="config-group">
+                    <label>Treasures (1-24):</label>
+                    <input type="number" id="treasure-count" min="1" max="24" value="5">
+                </div>
+                <div class="config-group">
+                    <label>Bombs (1-24):</label>
+                    <input type="number" id="bomb-count" min="1" max="24" value="5">
+                </div>
+                <div class="config-group">
+                    <label>Bet Amount:</label>
+                    <input type="number" id="bet-amount" min="1" value="10">
+                </div>
+                <div class="config-group">
+                    <label>Difficulty:</label>
+                    <select id="difficulty-level">
+                        <option value="easy">Easy (Low Risk)</option>
+                        <option value="medium" selected>Medium (Balanced)</option>
+                        <option value="hard">Hard (High Risk)</option>
+                        <option value="expert">Expert (Maximum Risk)</option>
+                    </select>
+                </div>
+                <button id="start-game-btn" class="btn btn-success" onclick="startGame()">
+                    <i class="fas fa-play"></i> Start Game
+                </button>
+            </div>
+
+            <!-- Game Statistics Panel -->
+            <div class="game-stats-panel">
+                <div class="stat-item">
+                    <span>Win Probability:</span>
+                    <span id="win-probability">50%</span>
+                </div>
+                <div class="stat-item">
+                    <span>Risk Level:</span>
+                    <span id="risk-level">Medium</span>
+                </div>
+                <div class="stat-item">
+                    <span>Multiplier:</span>
+                    <span id="win-multiplier">2.0x</span>
+                </div>
+            </div>
+
+            <!-- Game Grid -->
+            <div id="game-grid" class="game-grid"></div>
+
+            <!-- Game Info -->
+            <div class="game-info">
+                <div class="info-item">
+                    <span>Current Bet:</span>
+                    <span id="current-bet">0</span>
+                </div>
+                <div class="info-item">
+                    <span>Potential Win:</span>
+                    <span id="potential-win">0</span>
+                </div>
+                <div class="info-item">
+                    <span>Found Treasures:</span>
+                    <span id="found-treasures">0</span>
+                </div>
+                <div class="info-item">
+                    <span>Safe Cells:</span>
+                    <span id="safe-cells">0</span>
+                </div>
+            </div>
+
+            <div class="game-actions">
+                <button id="cash-out-btn" class="btn btn-warning hidden" onclick="cashOut()">
+                    <i class="fas fa-money-bill"></i> Cash Out
+                </button>
+                <button id="auto-reveal-btn" class="btn btn-info hidden" onclick="autoReveal()">
+                    <i class="fas fa-magic"></i> Auto Reveal
+                </button>
+                <button id="reset-game-btn" class="btn btn-secondary" onclick="resetGame()">
+                    <i class="fas fa-redo"></i> Reset
+                </button>
+            </div>
+
+            <!-- Game History -->
+            <div class="game-history">
+                <h3><i class="fas fa-history"></i> Recent Games</h3>
+                <div class="history-list" id="game-history-list">
+                    <!-- Game history will be populated here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="file:///assets/storage.js"></script>
+    <script src="file:///assets/sounds.js"></script>
+    <script src="file:///assets/utils.js"></script>
+    <script src="file:///assets/auth.js"></script>
+    <script src="file:///assets/game.js"></script>
+    <script src="file:///assets/play.js"></script>
+</body>
+</html>

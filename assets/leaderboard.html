@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard - Treasure Hunt Game</title>
+    <link rel="stylesheet" href="file:///assets/styles.css">
+    <link rel="stylesheet" href="file:///assets/animations.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Treasure Hunt</span>
+            </div>
+            <div class="nav-menu">
+                <a href="home.html" class="nav-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="play.html" class="nav-link">
+                    <i class="fas fa-gamepad"></i> Play
+                </a>
+                <a href="leaderboard.html" class="nav-link active">
+                    <i class="fas fa-trophy"></i> Leaderboard
+                </a>
+                <a href="profile.html" class="nav-link">
+                    <i class="fas fa-user"></i> Profile
+                </a>
+                <a href="admin.html" class="nav-link admin-only" style="display: none;">
+                    <i class="fas fa-cog"></i> Admin
+                </a>
+                <a href="#" onclick="logout()" class="nav-link logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Leaderboard Page Content -->
+    <div class="page-container">
+        <div class="leaderboard-container">
+            <h2><i class="fas fa-trophy"></i> Top Hunters</h2>
+            
+            <!-- Leaderboard Filters -->
+            <div class="leaderboard-filters">
+                <div class="filter-group">
+                    <label>Sort By:</label>
+                    <select id="sort-by">
+                        <option value="balance">Total Coins</option>
+                        <option value="winnings">Total Winnings</option>
+                        <option value="winRate">Win Rate</option>
+                        <option value="gamesPlayed">Games Played</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Time Period:</label>
+                    <select id="time-period">
+                        <option value="all">All Time</option>
+                        <option value="month">This Month</option>
+                        <option value="week">This Week</option>
+                        <option value="today">Today</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary" onclick="refreshLeaderboard()">
+                    <i class="fas fa-sync"></i> Refresh
+                </button>
+            </div>
+
+            <!-- Player Search -->
+            <div class="player-search">
+                <div class="search-box">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="player-search" placeholder="Search for a player...">
+                </div>
+            </div>
+
+            <!-- Current User Position -->
+            <div class="current-user-rank" id="current-user-rank">
+                <!-- Current user rank will be shown here -->
+            </div>
+
+            <!-- Leaderboard List -->
+            <div class="leaderboard-list" id="leaderboard-list">
+                <!-- Leaderboard items will be populated here -->
+            </div>
+
+            <!-- Statistics Summary -->
+            <div class="stats-summary">
+                <h3><i class="fas fa-chart-bar"></i> Community Stats</h3>
+                <div class="summary-grid">
+                    <div class="summary-item">
+                        <span class="label">Total Players:</span>
+                        <span class="value" id="total-players">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Total Games:</span>
+                        <span class="value" id="total-games">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Total Winnings:</span>
+                        <span class="value" id="total-winnings">0</span>
+                    </div>
+                    <div class="summary-item">
+                        <span class="label">Average Win Rate:</span>
+                        <span class="value" id="average-win-rate">0%</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="file:///assets/storage.js"></script>
+    <script src="file:///assets/sounds.js"></script>
+    <script src="file:///assets/utils.js"></script>
+    <script src="file:///assets/auth.js"></script>
+    <script src="file:///assets/leaderboard.js"></script>
+</body>
+</html>

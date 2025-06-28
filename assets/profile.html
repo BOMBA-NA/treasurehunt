@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile - Treasure Hunt Game</title>
+    <link rel="stylesheet" href="file:///assets/styles.css">
+    <link rel="stylesheet" href="file:///assets/animations.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav id="navbar" class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <i class="fas fa-map-marked-alt"></i>
+                <span>Treasure Hunt</span>
+            </div>
+            <div class="nav-menu">
+                <a href="home.html" class="nav-link">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <a href="play.html" class="nav-link">
+                    <i class="fas fa-gamepad"></i> Play
+                </a>
+                <a href="leaderboard.html" class="nav-link">
+                    <i class="fas fa-trophy"></i> Leaderboard
+                </a>
+                <a href="profile.html" class="nav-link active">
+                    <i class="fas fa-user"></i> Profile
+                </a>
+                <a href="admin.html" class="nav-link admin-only" style="display: none;">
+                    <i class="fas fa-cog"></i> Admin
+                </a>
+                <a href="#" onclick="logout()" class="nav-link logout">
+                    <i class="fas fa-sign-out-alt"></i> Logout
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Profile Page Content -->
+    <div class="page-container">
+        <div class="profile-container">
+            <h2><i class="fas fa-user-cog"></i> Profile Settings</h2>
+            
+            <div class="profile-layout">
+                <!-- Profile Card -->
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <img id="profile-avatar" src="" alt="Profile">
+                            <button class="change-avatar-btn" onclick="document.getElementById('new-avatar').click()">
+                                <i class="fas fa-camera"></i>
+                            </button>
+                            <input type="file" id="new-avatar" accept="image/*" style="display: none;">
+                        </div>
+                        <div class="profile-info">
+                            <h3 id="profile-display-name">Player Name</h3>
+                            <p class="join-date">Joined: <span id="join-date"></span></p>
+                            <div class="profile-level">
+                                <i class="fas fa-star"></i>
+                                Level <span id="profile-level">1</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <form id="profile-form" class="profile-form">
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" id="profile-username" required>
+                        </div>
+                        <div class="form-group">
+                            <label>New Password (leave empty to keep current)</label>
+                            <input type="password" id="profile-password">
+                        </div>
+                        <div class="form-group">
+                            <label>Confirm New Password</label>
+                            <input type="password" id="profile-confirm">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> Save Changes
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Statistics Panel -->
+                <div class="stats-panel">
+                    <h3><i class="fas fa-chart-line"></i> Your Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <i class="fas fa-coins"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-balance">0</span>
+                                <span class="stat-label">Current Balance</span>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-gamepad"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-games-played">0</span>
+                                <span class="stat-label">Games Played</span>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-trophy"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-games-won">0</span>
+                                <span class="stat-label">Games Won</span>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-percentage"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-win-rate">0%</span>
+                                <span class="stat-label">Win Rate</span>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-gem"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-total-winnings">0</span>
+                                <span class="stat-label">Total Winnings</span>
+                            </div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="fas fa-fire"></i>
+                            <div class="stat-info">
+                                <span class="stat-value" id="stat-best-streak">0</span>
+                                <span class="stat-label">Best Streak</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Achievements Section -->
+            <div class="achievements-section">
+                <h3><i class="fas fa-medal"></i> Achievements</h3>
+                <div class="achievements-grid" id="achievements-grid">
+                    <!-- Achievements will be populated here -->
+                </div>
+            </div>
+
+            <!-- Game History -->
+            <div class="game-history-section">
+                <h3><i class="fas fa-history"></i> Game History</h3>
+                <div class="history-filters">
+                    <select id="history-filter">
+                        <option value="all">All Games</option>
+                        <option value="won">Won Games</option>
+                        <option value="lost">Lost Games</option>
+                    </select>
+                    <button class="btn btn-secondary" onclick="exportGameHistory()">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                </div>
+                <div class="history-table-container">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Bet</th>
+                                <th>Treasures</th>
+                                <th>Bombs</th>
+                                <th>Result</th>
+                                <th>Winnings</th>
+                            </tr>
+                        </thead>
+                        <tbody id="history-table-body">
+                            <!-- Game history rows will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings Section -->
+            <div class="settings-section">
+                <h3><i class="fas fa-cog"></i> Game Settings</h3>
+                <div class="settings-grid">
+                    <div class="setting-item">
+                        <label for="sound-enabled">
+                            <i class="fas fa-volume-up"></i>
+                            Sound Effects
+                        </label>
+                        <input type="checkbox" id="sound-enabled" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label for="sound-volume">
+                            <i class="fas fa-volume-down"></i>
+                            Volume Level
+                        </label>
+                        <input type="range" id="sound-volume" min="0" max="100" value="50">
+                    </div>
+                    <div class="setting-item">
+                        <label for="auto-save">
+                            <i class="fas fa-save"></i>
+                            Auto Save Progress
+                        </label>
+                        <input type="checkbox" id="auto-save" checked>
+                    </div>
+                    <div class="setting-item">
+                        <label for="animations-enabled">
+                            <i class="fas fa-magic"></i>
+                            Animations
+                        </label>
+                        <input type="checkbox" id="animations-enabled" checked>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="file:///assets/storage.js"></script>
+    <script src="file:///assets/sounds.js"></script>
+    <script src="file:///assets/utils.js"></script>
+    <script src="file:///assets/auth.js"></script>
+    <script src="file:///assets/profile.js"></script>
+</body>
+</html>

@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     // Check authentication
     const currentUser = authManager.getCurrentUser();
     if (!currentUser) {
-        window.location.href = 'index.html';
+        window.location.href = 'main.html';
         return;
     }
 
@@ -279,6 +279,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     window.logout = function() {
         soundManager.playButton();
         authManager.logout();
-        window.location.href = 'index.html';
+        window.location.href = 'main.html';
     };
 });

@@ -96,7 +96,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     // Enhanced admin functions
     window.addBonusToAll = function() {
-        const bonusAmount = prompt('Enter bonus amount for all users:', '100');
+        const bonusAmount = prompt('Enter bonus amount for all users:', '500');
         if (bonusAmount === null) return;
 
         const bonus = parseInt(bonusAmount);
